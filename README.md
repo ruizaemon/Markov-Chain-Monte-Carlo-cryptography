@@ -20,6 +20,6 @@ To decrypt the text:
 The trick to create a decryption key is to exploit a statistical regularity in the arrangement of alphabets of the English language. For instance, the probability of the letter 'u' appearing after the letter 'q' is very high. We first want to quantify the likelihood of any sequence of characters using statistics.
 
 The function `element_transition` is a helper function that takes in a `double` array converted from the original text and two doubles that represent the alphabets, and outputs the transition probability (consecutive appearance) of these alphabets in the array using the formula:
-$$
+$
 \frac{1 + \\#times j-th alphabet appears after i-th alphabet in input text}{27 + \\#times i-th alphabet appears in input text except at the last position}
-$$
+$
