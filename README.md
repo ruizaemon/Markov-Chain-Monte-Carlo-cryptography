@@ -17,4 +17,4 @@ To decrypt the text:
 >> frank_decrypted_txt = double2char(frank_decrypted_double);
 ```
 ## Probability of consecutive characters in the English language
-e
+text
