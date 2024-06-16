@@ -68,9 +68,9 @@ Given an encrypted message and any decrypt key, we can calculate the likelihood 
 >> logn_pr_txt(mystery_decrypted_txt, pr_trans)
 ```
 
-## Metropolis algorithm
+## Metropolis-Hastings algorithm
 
-The metropolis decryption algorithm goes like this:
+The function `mcmc_decrypt_text` implements the metropolis decryption algorithm:
 
 (i) Start with preliminary guess of decrypt_key.
 
@@ -85,3 +85,10 @@ The metropolis decryption algorithm goes like this:
 - If ln $P_{new}$ $<$ ln $P_{current}$, accept the new decrypt_key as the current decrypt_key with probability $e^{(ln P_{new} − ln P_{current})}$. We compute the differences in the ln probability before exponentiating because this is computationally more stable.
 
 (v) Repeat steps (ii) to (iv) for as long as desired.
+
+Try it out using the following lines:
+
+```
+>> [decrypted_txt, decrypt_key] = mcmc_decrypt_text(frank_encrypted_txt, pr_trans)
+>> [decrypted_txt, decrypt_key] = mcmc_decrypt_text(mystery_encrypted_txt, pr_trans)
+```
