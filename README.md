@@ -59,7 +59,7 @@ The function `logn_pr_txt` computes this natural log probability of any input te
 
 ### Probability of decrypt key on encrypted message
 
-Given an encrypted message and any decrypt key, we can calculate the likelihood of the decrypt key being correct by unscrambling the encrypted message then applying the `logn_pr_txt` function.
+Given an encrypted message and any decrypt key, we can calculate the likelihood of the decrypt key being correct, $p$(encrypted_message | decrypt_key), by unscrambling the encrypted message then applying the `logn_pr_txt` function.
 
 ```
 >> frank_encrypted_double = char2double(frank_encrypted_txt)
@@ -70,3 +70,12 @@ Given an encrypted message and any decrypt key, we can calculate the likelihood 
 
 ## Metropolis algorithm
 
+The metropolis decryption algorithm goes like this:
+(i) Start with preliminary guess of decrypt_key.
+(ii) Perturb the current decrypt_key by randomly swapping two elements in the array and denote it as new_decrypt_key. 
+(iii) Compute ln $P_{current}$ = ln $p$(encrypted message | current_decrypt_key)
+(iv) Compute ln $P_{new}$ = ln $p$(encrypted message | new_decrypt_key)
+- If ln $P_{new}$ $\geq$ ln $P_{current}$, accept the new decrypt_key as the current decrypt_key
+- If ln $P_{new}$ $<$ ln $P_{current}$, accept the new decrypt_key as the current decrypt_key with probability $e^{(ln P_{new} − ln P_{current})}$. We compute the differences in the ln probability before exponentiating because this is computationally more stable.
+
+(v) Repeat steps (ii) to (iv) for as long as you desired.
