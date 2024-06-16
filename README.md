@@ -19,12 +19,25 @@ To decrypt the text:
 >> frank_decrypted_txt = double2char(frank_decrypted_double);
 ```
 
-## Probability of consecutive characters in the English language
+## Computing probabilities
 
-The trick to create a decryption key is to exploit a statistical regularity in the arrangement of alphabets of the English language. For instance, the probability of the letter 'u' appearing after the letter 'q' is very high. We first want to quantify the likelihood of any sequence of characters using statistics.
+### Transition probability matrix
+
+The trick to creating a decryption key for text is to exploit a statistical regularity in the arrangement of alphabets of the English language. For instance, the probability of the letter 'u' appearing after the letter 'q' is very high. We first want to quantify the likelihood of any sequence of characters using statistics.
 
 The function `element_transition` is a helper function that takes in a `double` array converted from the original text and two doubles that represent the alphabets, and outputs the transition probability (consecutive appearance) of these alphabets in the array using the formula:
 
 ```math
 \cfrac{\text{1 + \#times $j$-th alphabet appears after $i$-th alphabet in input text}}{\text{27 + \#times $i$-th alphabet appears in input text except at the last position}}
 ```
+
+`compute_transition_probability` uses this function to fill up the elements of a 27x27 matrix.
+
+Running the following lines will generate a transition probability matrix for the given training text. The highest probability in the matrix is 0.7920, which can be found at (17,21), corresponding to the transition from 'q' to 'u'.
+
+``` 
+>> pr_trans = compute_transition_probability(training_txt);
+>> max(pr_trans(:))
+```
+
+### Probability of any sequence of characters
