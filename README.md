@@ -52,12 +52,12 @@ This equation is based on the Markov assumption which states that the observatio
 To make the computation numerically stable, we will take the logarithm of this probability:
 
 ```math
-\text{ln pr('$c_1c_2\cdots c_N$')} = \sum_{n=1}^{N-1}\text{ln (probability of bserving $c_{n+1}$ immediately after $c_n$)}
+\text{ln pr('$c_1c_2\cdots c_N$')} = \sum_{n=1}^{N-1}\text{ln (probability of observing $c_{n+1}$ immediately after $c_n$)}
 ```
 
 The function `logn_pr_txt` computes this natural log probability of any input text using the transition matrix computed in the previous step.
 
-### Probability of decrypt key on encrypted message 
+### Probability of decrypt key on encrypted message
 
 Given an encrypted message and any decrypt key, we can calculate the likelihood of the decrypt key being correct by unscrambling the encrypted message then applying the `logn_pr_txt` function.
 
