@@ -84,4 +84,4 @@ The metropolis decryption algorithm goes like this:
 
 - If ln $P_{new}$ $<$ ln $P_{current}$, accept the new decrypt_key as the current decrypt_key with probability $e^{(ln P_{new} − ln P_{current})}$. We compute the differences in the ln probability before exponentiating because this is computationally more stable.
 
-(v) Repeat steps (ii) to (iv) for as long as you desired.
+(v) Repeat steps (ii) to (iv) for as long as desired.
